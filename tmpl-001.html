@@ -14,11 +14,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
+        :root {
+            --font-family: "Raleway", sans-serif;
+        }
      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800;900&display=swap");
      * {
          box-sizing: border-box;
          margin: 0;
          padding: 0;
+     }
+     body {
+        font-family: var(--font-family);
      }
     #screen1-landing {
         /*
@@ -43,7 +49,8 @@
             A partir de esta parte ↓↓↓ se puede modificar sin problemas
         */
         display: grid;
-        grid-template-rows: 33% 50% 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 30% 60% 1fr;
         justify-content: center;
         align-content: center;
         background-color: #092e4c;
@@ -56,6 +63,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        align-content: center;
+        grid-row: 1 / 2;
         & img {
             height: 130px;
             width: 130px;
@@ -70,6 +79,10 @@
         display: flex;
         flex-direction: column;
         gap: 2em;
+        grid-row: 2 / 3;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
         a {
             border: 1px solid #fff;
             padding: 0.5em;
@@ -95,6 +108,113 @@
             font-size: 2rem;
         }        
     }
+    /* estilo del modal */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 1000;        
+    }
+    .modal-container {
+        margin: 0 auto;
+        width: 95%;
+        height: 80vh; /* 80% del viewport height */
+        background-color: white;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(150%);
+        transition: transform 0.3s ease-out;
+        color: #333;
+    }
+    
+    .modal-overlay.active .modal-container {
+        transform: translateY(0);
+    }
+    
+    /* Espacio en la parte superior (25% restante) */
+    .modal-overlay.active {
+        align-items: flex-end;
+        padding-top: 20vh; /* Esto crea el espacio superior */
+    }
+    
+    .modal-header {
+        padding: 10px;
+        background-color: #065ca3;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Raleway", sans-serif;
+        text-transform: uppercase;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .close-btn:hover {
+        transform: scale(1.2);
+    }
+    .modal-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            padding-inline: 1.5em;
+            line-height: 2;
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            padding: 0.5em;
+        }
+    }
+    .drag-handle {
+        width: 40px;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 3px;
+        margin: 8px auto;
+        cursor: pointer;
+    }
+    
+    .modal-content {
+        display: none;
+    }
+    
+    #acerca-content {
+        text-align: center;
+    }
+    #acerca-content img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+    #portafolio-content .portfolio-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+
 
     </style>
 
@@ -109,10 +229,10 @@
             <img src="images/agilardino.png" alt="Alejandro Gilardino">
         </div>
         <div class="enlaces">
-            <a href="#">Acerca</a>
-            <a href="#">Portafolio</a>
-            <a href="#">Bio</a>
-            <a href="#">Contacto</a>
+            <a class="modal-trigger" data-target="acerca-content">Acerca de</a>
+            <a class="modal-trigger" data-target="portafolio-content">Portafolio</a>
+            <a class="modal-trigger" data-target="bio-content">Biografía</a>
+            <a class="modal-trigger" data-target="contacto-content">Contacto</a>
         </div>
         <div class="redes_sociales">
             <div><i class="fa-brands fa-instagram"></i></div>
@@ -127,7 +247,47 @@
 
     -->
 
-    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <span id="modalTitle">Título</span>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="drag-handle"></div>
+            <div class="modal-body" id="modalBody">
+                <!-- El contenido se inyectará aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- *********************************************** -->
+    <!-- ************ CONTENIDOS DE MODALES ************ -->
+    <!-- *********************************************** -->
+    <div id="acerca-content" class="modal-content">
+        <h2>Acerca de Mí</h2>
+        <img src="images/agilardino.png" alt="Alejandro Gilardino">
+        <p>Soy un profesional con amplia experiencia en mi campo.</p>
+        <p>Especializado en crear soluciones innovadoras.</p>
+    </div>
+
+    <div id="portafolio-content" class="modal-content">
+        <h2>Portafolio</h2>
+        <div class="portfolio-item">
+            <h3>Proyecto Destacado</h3>
+            <p>Descripción detallada del proyecto.</p>
+        </div>
+    </div>
+
+    <div id="bio-content" class="modal-content">
+        <h2>Biografía</h2>
+        <p>Mi trayectoria profesional y educación.</p>
+    </div>
+
+    <div id="contacto-content" class="modal-content">
+        <h2>Contacto</h2>
+        <p>Email: contacto@ejemplo.com</p>
+        <p>Teléfono: +123456789</p>
+    </div>
 
 </body>
 <script type="text/javascript">
@@ -143,7 +303,93 @@ window.onresize();
       Agrega tu codigo aqui abajo ↓↓↓
 */
 
-
-
+$(document).ready(function() {
+        // Configuración del modal
+        const modalOverlay = $('#modalOverlay');
+        const modalContainer = $('.modal-container');
+        const modalBody = $('#modalBody');
+        const modalTitle = $('#modalTitle');
+        const closeModal = $('#closeModal');
+        
+        // Abrir modal con contenido interno
+        $('.modal-trigger').on('click', function(e) {
+            e.preventDefault();
+            const target = $(this).data('target');
+            const title = $(this).text() || $(this).attr('title') || 'Contenido';
+            
+            // Obtener y mostrar el contenido correspondiente
+            const content = $('#' + target).html();
+            modalBody.html(content);
+            modalTitle.text(title);
+            
+            // Mostrar el overlay con animación
+            modalOverlay.fadeIn(200, function() {
+                modalOverlay.addClass('active');
+            });
+            
+            $('body').css('overflow', 'hidden');
+        });
+        
+        // Función para cerrar el modal
+        function closeModalFunction() {
+            modalOverlay.removeClass('active');
+            setTimeout(function() {
+                modalOverlay.fadeOut(200);
+                $('body').css('overflow', 'auto');
+            }, 300);
+        }
+        
+        // Eventos para cerrar el modal
+        closeModal.on('click', closeModalFunction);
+        
+        modalOverlay.on('click', function(e) {
+            if (e.target === modalOverlay[0]) {
+                closeModalFunction();
+            }
+        });
+        
+        $(document).on('keyup', function(e) {
+            if (e.key === "Escape") {
+                closeModalFunction();
+            }
+        });
+        
+        // Arrastrar para cerrar (mejorado)
+        let startY = 0;
+        let isDragging = false;
+        
+        $('.drag-handle').on('mousedown touchstart', function(e) {
+            e.preventDefault();
+            startY = e.type === 'mousedown' ? e.clientY : e.originalEvent.touches[0].clientY;
+            isDragging = true;
+            modalContainer.css('transition', 'none');
+        });
+        
+        $(document).on('mousemove touchmove', function(e) {
+            if (!isDragging) return;
+            
+            const currentY = e.type === 'mousemove' ? e.clientY : e.originalEvent.touches[0].clientY;
+            const diff = currentY - startY;
+            
+            if (diff > 0) {
+                modalContainer.css('transform', `translateY(${diff}px)`);
+            }
+        });
+        
+        $(document).on('mouseup touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            modalContainer.css('transition', 'transform 0.3s ease-out');
+            
+            const currentY = e.type === 'mouseup' ? e.clientY : e.originalEvent.changedTouches[0].clientY;
+            const diff = currentY - startY;
+            
+            if (diff > 100) {
+                closeModalFunction();
+            } else {
+                modalContainer.css('transform', 'translateY(0)');
+            }
+        });
+    });
 
 </script>
