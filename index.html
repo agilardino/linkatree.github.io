@@ -13,18 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-        :root {
-            --font-family: "Raleway", sans-serif;
-        }
-     @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800;900&display=swap");
-     * {
-         box-sizing: border-box;
-         margin: 0;
-         padding: 0;
-     }
-     body {
-        font-family: var(--font-family);
-     }
+
     #screen1-landing {
         /*
             No tocar esta parte de abajo ↓↓↓
@@ -49,7 +38,7 @@
         */
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 25% 50% 25%;
+        grid-template-rows: 25% 55% 20%;
         justify-content: center;
         align-content: center;
         background-color: #092e4c;
@@ -137,7 +126,7 @@
         <p>Email: contacto@ejemplo.com</p>
         <p>Teléfono: +123456789</p>
     </div>
-
+<script src="modal.js"></script>
 </body>
 <script type="text/javascript">
 /*
@@ -151,57 +140,5 @@ window.onresize();
 /*
       Agrega tu codigo aqui abajo ↓↓↓
 */
-
-$(document).ready(function() {
-        // Configuración del modal
-        const modalOverlay = $('#modalOverlay');
-        const modalContainer = $('.modal-container');
-        const modalBody = $('#modalBody');
-        const modalTitle = $('#modalTitle');
-        const closeModal = $('#closeModal');
-        
-        // Abrir modal con contenido interno
-        $('.modal-trigger').on('click', function(e) {
-            e.preventDefault();
-            const target = $(this).data('target');
-            const title = $(this).text() || $(this).attr('title') || 'Contenido';
-            
-            // Obtener y mostrar el contenido correspondiente
-            const content = $('#' + target).html();
-            modalBody.html(content);
-            modalTitle.text(title);
-            
-            // Mostrar el overlay con animación
-            modalOverlay.fadeIn(100, function() {
-                modalOverlay.addClass('active');
-            });
-            
-            $('body').css('overflow', 'hidden');
-        });
-        
-        // Función para cerrar el modal
-        function closeModalFunction() {
-            modalOverlay.removeClass('active');
-            setTimeout(function() {
-                modalOverlay.fadeOut(200);
-                $('body').css('overflow', 'auto');
-            }, 200);
-        }
-        
-        // Eventos para cerrar el modal
-        closeModal.on('click', closeModalFunction);
-        
-        modalOverlay.on('click', function(e) {
-            if (e.target === modalOverlay[0]) {
-                closeModalFunction();
-            }
-        });
-        
-        $(document).on('keyup', function(e) {
-            if (e.key === "Escape") {
-                closeModalFunction();
-            }
-        });
-    });
 
 </script>

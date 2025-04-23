@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800;900&display=swap");
+:root {
+    --font-family: "Raleway", sans-serif;
+}
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+body {
+font-family: var(--font-family);
+}
 #screen1-landing video#bg-video {
     position: absolute;
     top: 0;
