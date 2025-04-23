@@ -27,6 +27,12 @@ $(document).ready(function() {
     
     // Función para cerrar el modal
     function closeModalFunction() {
+        modalBody.find('iframe').each(function(){
+            const src = $(this).attr('src');
+            $(this).attr('src', ''); //limpia el src
+            $(this).attr('src', src);
+        });
+
         modalOverlay.removeClass('active');
         setTimeout(function() {
             modalOverlay.fadeOut(200);
