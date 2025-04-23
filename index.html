@@ -6,8 +6,8 @@
     <title>Template_Title</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="imgs/favicon.png" sizes="16x16" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
@@ -58,175 +58,6 @@
         color: white;
         font-family: "Raleway", sans-serif;
     }
-    #screen1-landing video#bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2; /* más atrás que la overlay */
-    pointer-events: none;
-}
-
-#screen1-landing .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-    background-color: rgba(0, 0, 0, 0.65);
-    z-index: -1; /* entre el video y el contenido */
-    pointer-events: none;
-}
-    .main-title {
-        grid-row: 1 / 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-block: 1em;
-        img {
-            height: 140px;
-            width: 140px;
-            border-radius: 50%;
-            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
-        }
-    }
-    .enlaces {
-        line-height: 1.5;
-        text-align: center;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        grid-row: 2 / 3;
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase;
-        a {
-            border: 1px solid #fff;
-            padding: 0.5em;
-            width: 25ch;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px 0;
-            border-style: double;
-            transition: all .3s ease-in-out;
-            &:hover {
-                background-color: #065ca3;
-                transition: all .3s ease-in-out;
-            }
-            }
-        }
-    
-    .redes_sociales {
-        grid-row: 3 / 4;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        padding-top: 0.8em;
-        margin-bottom: 1rem;
-        .fa-brands {
-            font-size: 2rem;
-        }        
-    }
-    /* estilo del modal */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.65);
-        display: none;
-        justify-content: center;
-        align-items: flex-end;
-        z-index: 1000;        
-    }
-    .modal-container {
-        margin: 0 auto;
-        width: 95%;
-        height: 80vh; /* 80% del viewport height */
-        background-color: white;
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transform: translateY(150%);
-        transition: transform 0.3s ease-out;
-        color: #333;
-    }
-    
-    .modal-overlay.active .modal-container {
-        transform: translateY(0);
-    }
-    
-    /* Espacio en la parte superior (25% restante) */
-    .modal-overlay.active {
-        align-items: flex-end;
-        padding-top: 20vh; /* Esto crea el espacio superior */
-    }
-    
-    .modal-header {
-        padding: 10px;
-        background-color: #06a391;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-transform: uppercase;
-    }
-    
-    .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    
-    .close-btn:hover {
-        transform: scale(1.2);
-    }
-    .modal-body {
-        flex: 1;
-        padding: 10px;
-        overflow-y: auto;
-        h2 {
-            font-size: clamp(1.5rem, 2vw, 2rem);
-            text-transform: uppercase;
-            padding-inline: 1.5em;
-            line-height: 2;
-            text-align: center;
-        }
-        h3 {
-            font-size: 1.5rem;
-            line-height: 1.5;
-        }
-        p {
-            font-size: 1rem;
-            line-height: 1.5;
-            padding: 0.5em;
-        }
-    }
-    
-    .modal-content {
-        display: none;
-    }
-    
-    #acerca-content {
-        text-align: center;
-    }
-    #acerca-content img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 15px;
-    }
-    #portafolio-content .portfolio-item {
-        margin-bottom: 15px;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-    }
-
 
 
     </style>
@@ -239,7 +70,7 @@
     -->
     <div id="screen1-landing">
         <video id="bg-video" autoplay muted loop playsinline>
-            <source src="images/motion.mp4" type="video/mp4" />
+            <source src="videos/motion.mp4" type="video/mp4" />
             Tu navegador no soporta el video.
           </video>
 <div class="video-overlay"></div>
