@@ -58,6 +58,7 @@
         color: white;
         font-family: "Raleway", sans-serif;
     }
+ 
     .main-title {
         display: flex;
         justify-content: center;
@@ -143,7 +144,7 @@
     
     .modal-header {
         padding: 10px;
-        background-color: #065ca3;
+        background-color: #06a391;
         color: white;
         display: flex;
         justify-content: space-between;
@@ -314,7 +315,7 @@ $(document).ready(function() {
             modalTitle.text(title);
             
             // Mostrar el overlay con animación
-            modalOverlay.fadeIn(200, function() {
+            modalOverlay.fadeIn(100, function() {
                 modalOverlay.addClass('active');
             });
             
@@ -327,7 +328,7 @@ $(document).ready(function() {
             setTimeout(function() {
                 modalOverlay.fadeOut(200);
                 $('body').css('overflow', 'auto');
-            }, 300);
+            }, 200);
         }
         
         // Eventos para cerrar el modal
