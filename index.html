@@ -6,25 +6,14 @@
     <title>Template_Title</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="imgs/favicon.png" sizes="16x16" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-        :root {
-            --font-family: "Raleway", sans-serif;
-        }
-     @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800;900&display=swap");
-     * {
-         box-sizing: border-box;
-         margin: 0;
-         padding: 0;
-     }
-     body {
-        font-family: var(--font-family);
-     }
+
     #screen1-landing {
         /*
             No tocar esta parte de abajo ↓↓↓
@@ -49,183 +38,15 @@
         */
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 30% 60% 1fr;
+        grid-template-rows: 25% 55% 20%;
         justify-content: center;
         align-content: center;
         background-color: #092e4c;
         opacity: 1;
-        z-index: 10;
+        z-index: 1000;
         color: white;
         font-family: "Raleway", sans-serif;
     }
-    #screen1-landing video#bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2; /* más atrás que la overlay */
-    pointer-events: none;
-}
-
-#screen1-landing .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1; /* entre el video y el contenido */
-    pointer-events: none;
-}
-    .main-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        grid-row: 1 / 2;
-        & img {
-            height: 130px;
-            width: 130px;
-            border-radius: 100%;
-            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
-        }
-    }
-    .enlaces {
-        line-height: 1.5;
-        text-align: center;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        grid-row: 2 / 3;
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase;
-        a {
-            border: 1px solid #fff;
-            padding: 0.5em;
-            width: 25ch;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px 0;
-            border-style: double;
-            transition: all .3s ease-in-out;
-            &:hover {
-                background-color: #065ca3;
-                transition: all .3s ease-in-out;
-            }
-            }
-        }
-    
-    .redes_sociales {
-        display: flex;
-        justify-content: space-around;
-        align-content: center;
-        align-items: center;
-        .fa-brands {
-            font-size: 2rem;
-        }        
-    }
-    /* estilo del modal */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        display: none;
-        justify-content: center;
-        align-items: flex-end;
-        z-index: 1000;        
-    }
-    .modal-container {
-        margin: 0 auto;
-        width: 95%;
-        height: 80vh; /* 80% del viewport height */
-        background-color: white;
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transform: translateY(150%);
-        transition: transform 0.3s ease-out;
-        color: #333;
-    }
-    
-    .modal-overlay.active .modal-container {
-        transform: translateY(0);
-    }
-    
-    /* Espacio en la parte superior (25% restante) */
-    .modal-overlay.active {
-        align-items: flex-end;
-        padding-top: 20vh; /* Esto crea el espacio superior */
-    }
-    
-    .modal-header {
-        padding: 10px;
-        background-color: #06a391;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: "Raleway", sans-serif;
-        text-transform: uppercase;
-    }
-    
-    .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    
-    .close-btn:hover {
-        transform: scale(1.2);
-    }
-    .modal-body {
-        flex: 1;
-        padding: 10px;
-        overflow-y: auto;
-        h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            padding-inline: 1.5em;
-            line-height: 2;
-            text-align: center;
-        }
-        h3 {
-            font-size: 1.5rem;
-            line-height: 1.5;
-        }
-        p {
-            font-size: 1rem;
-            line-height: 1.5;
-            padding: 0.5em;
-        }
-    }
-    
-    .modal-content {
-        display: none;
-    }
-    
-    #acerca-content {
-        text-align: center;
-    }
-    #acerca-content img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 15px;
-    }
-    #portafolio-content .portfolio-item {
-        margin-bottom: 15px;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-    }
-
 
 
     </style>
@@ -238,7 +59,7 @@
     -->
     <div id="screen1-landing">
         <video id="bg-video" autoplay muted loop playsinline>
-            <source src="images/motion.mp4" type="video/mp4" />
+            <source src="videos/motion.mp4" type="video/mp4" />
             Tu navegador no soporta el video.
           </video>
 <div class="video-overlay"></div>
@@ -248,11 +69,11 @@
         <div class="enlaces">
             <a class="modal-trigger" data-target="acerca-content">Acerca de</a>
             <a class="modal-trigger" data-target="portafolio-content">Portafolio</a>
-            <a class="modal-trigger" data-target="bio-content">Biografía</a>
+            <a class="modal-trigger" data-target="bio-content">PlayList</a>
             <a class="modal-trigger" data-target="contacto-content">Contacto</a>
         </div>
         <div class="redes_sociales">
-            <div><i class="fa-brands fa-instagram"></i></div>
+            <div><a href=""><i class="fa-brands fa-instagram"></i></a></div>
             <div><i class="fa-brands fa-youtube"></i></div>
             <div><i class="fa-brands fa-facebook"></i></div>
         </div>
@@ -296,8 +117,8 @@
     </div>
 
     <div id="bio-content" class="modal-content">
-        <h2>Biografía</h2>
-        <p>Mi trayectoria profesional y educación.</p>
+        <h2>Music Playlist</h2>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO1SVXaM?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
     <div id="contacto-content" class="modal-content">
@@ -305,7 +126,7 @@
         <p>Email: contacto@ejemplo.com</p>
         <p>Teléfono: +123456789</p>
     </div>
-
+<script src="modal.js"></script>
 </body>
 <script type="text/javascript">
 /*
@@ -319,57 +140,5 @@ window.onresize();
 /*
       Agrega tu codigo aqui abajo ↓↓↓
 */
-
-$(document).ready(function() {
-        // Configuración del modal
-        const modalOverlay = $('#modalOverlay');
-        const modalContainer = $('.modal-container');
-        const modalBody = $('#modalBody');
-        const modalTitle = $('#modalTitle');
-        const closeModal = $('#closeModal');
-        
-        // Abrir modal con contenido interno
-        $('.modal-trigger').on('click', function(e) {
-            e.preventDefault();
-            const target = $(this).data('target');
-            const title = $(this).text() || $(this).attr('title') || 'Contenido';
-            
-            // Obtener y mostrar el contenido correspondiente
-            const content = $('#' + target).html();
-            modalBody.html(content);
-            modalTitle.text(title);
-            
-            // Mostrar el overlay con animación
-            modalOverlay.fadeIn(100, function() {
-                modalOverlay.addClass('active');
-            });
-            
-            $('body').css('overflow', 'hidden');
-        });
-        
-        // Función para cerrar el modal
-        function closeModalFunction() {
-            modalOverlay.removeClass('active');
-            setTimeout(function() {
-                modalOverlay.fadeOut(200);
-                $('body').css('overflow', 'auto');
-            }, 200);
-        }
-        
-        // Eventos para cerrar el modal
-        closeModal.on('click', closeModalFunction);
-        
-        modalOverlay.on('click', function(e) {
-            if (e.target === modalOverlay[0]) {
-                closeModalFunction();
-            }
-        });
-        
-        $(document).on('keyup', function(e) {
-            if (e.key === "Escape") {
-                closeModalFunction();
-            }
-        });
-    });
 
 </script>
